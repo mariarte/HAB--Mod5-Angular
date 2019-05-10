@@ -1,0 +1,14 @@
+<div class="jumbotron bg-primary text-white">
+    <h1 class="display-2">Welcome</h1>
+    <p class="lead">
+        The Social Network. A space for sharing
+    </p>
+    <hr class="my-4 bg-white" />
+    <ul class="list-unstyled">
+        <li *ngFor="let item of rows" class="mt-4">
+            <h3>
+                <i [class]="item.icon" [style.color]="item.id === 2 ? 'green' : 'red'"></i> {{ item.message }}
+            </h3>
+        </li>
+    </ul>
+</div>

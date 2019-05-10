@@ -1,0 +1,23 @@
+# gitignore
+
+
+node_modules/
+npm-debug.log
+
+.DS_Store
+current
+default-packages
+
+npm-shrinkwrap.json
+package-lock.json
+yarn.lock
+
+.env
+my-app/
+angular-tour-of-heroes
+
+
+
+
+
+

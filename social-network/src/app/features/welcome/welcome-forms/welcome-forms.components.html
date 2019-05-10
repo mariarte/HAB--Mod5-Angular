@@ -1,0 +1,24 @@
+<section class="bg-white p-3 rounded">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" [class.active]="isRegisterFormVisible" (click)="toggleForm(true)">Register</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="!isRegisterFormVisible"
+        (click)="toggleForm(false)"
+        >Login</a
+      >
+    </li>
+  </ul>
+
+  <div *ngIf="isRegisterFormVisible">
+    <sn-register></sn-register>
+  </div>
+
+  <div *ngIf="!isRegisterFormVisible">
+    <sn-login></sn-login>
+  </div>
+</section>
