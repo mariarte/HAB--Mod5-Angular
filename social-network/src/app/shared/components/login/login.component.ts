@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
 import { Validators, FormBuilder } from "@angular/forms";
 import { AuthService } from "src/app/core/services/auth.service";
+import { UserService } from "src/app/core/services/user.service";
 import { MailValidator } from "../../validators/mail.validator";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "sn-login",
@@ -14,16 +16,23 @@ export class LoginComponent {
     password: ["", [Validators.required, Validators.minLength(7)]]
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   login() {
     if (this.loginForm.valid) {
-      this.authService
-        .login(this.loginForm.value)
-        .subscribe(
-          data => console.log(data),
-          () => this.loginForm.get("password").setValue("")
-        );
+      this.authService.login(this.loginForm.value).subscribe(
+        () => {
+          this.userService.getUserProfile().subscribe();
+          console.log(this.authService, this.userService);
+          this.router.navigate(["/wall"]);
+        },
+        () => this.loginForm.get("password").setValue("")
+      );
     }
   }
 }
